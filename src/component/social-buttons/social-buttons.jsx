@@ -4,15 +4,15 @@ import styled from 'styled-components'
 const SocialButtons = () => {
   return (
     <UL>
-        <Li className='bg-[#3b5998]'>  
+        <Li className='bg-[#3b5998] text-[#fff]'>  
             <span> Facebook </span>
             <span className='flex justify-center items-center'> <ion-icon name="logo-facebook"></ion-icon>   </span>
         </Li>
-        <Li className='text-[#000] bg-[#fff]'>  
+        <Li className='text-[#fff] bg-[#333]'>  
             <span> Google </span>
             <span className='flex justify-center items-center'> <ion-icon name="logo-google"></ion-icon>   </span>
         </Li>
-        <Li className='bg-[#1dcaff]'>  
+        <Li className='bg-[#1dcaff] text-[#fff]'>  
             <span> Twitter </span>
             <span className='flex justify-center items-center'> <ion-icon name="logo-twitter"></ion-icon>   </span>
         </Li>
@@ -25,7 +25,7 @@ export default SocialButtons
 const UL = styled.ul`
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 4px;
     margin-top: 20px;
     @media(max-width : 768px){
         margin-top: 5px;
@@ -35,16 +35,12 @@ const UL = styled.ul`
 
 const Li = styled.li`
     display: flex;
-    gap: 10px;
+    gap: 4px;
     align-items: center;
-    min-width: 120px;
+    width: fit-content;
     border-radius: 4px;
     cursor: pointer;
-    padding : 10px 20px;
+    padding: 10px 10px;
+    font-size: 12px;
     text-align: center;
-    @media(max-width : 768px){
-        min-width: 0px;
-        padding: 10px  10px;
-        font-size: 12px;
-    }
 `

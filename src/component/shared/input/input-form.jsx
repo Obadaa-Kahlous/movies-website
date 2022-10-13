@@ -22,7 +22,7 @@ const InputForm = ({onClick , isPassword , labelText , name , id , value , type 
                 }
               </Icon>
           }
-          <span className='error absolute'>{ErrorMessage}</span>
+        <span className='error absolute'>{ErrorMessage}</span>
         </div>
     </div>
       

@@ -20,7 +20,7 @@ const Login = () => {
       const InputsData = [
         {
             id: 1,
-            label: 'Email',
+            label: '',
             name : 'email',
             type : 'email',
             placeholder : 'Email',
@@ -31,11 +31,11 @@ const Login = () => {
         },
         {
             id: 2,
-            label: 'Password',
+            label: '',
             name : 'password',
             type : showPassword ? 'text' : 'password',
             placeholder : 'Password',
-            ErrorMessage : 'Password should be 8-16 characters and include at least 1 letter, 1 number and 1 special character!',
+            ErrorMessage : 'should be 8-16 characters and include at least 1 letter, 1 number and 1 special character!',
             pattern : `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$`,
             icon : 'lock-closed-outline',
             required : false,
@@ -93,6 +93,7 @@ const Button = styled.button`
   font-size: 16px;
   padding: 12px 35px;
   border-radius: 5px;
+  margin-top : 30px;
   font-size: 18px;
   box-shadow: 0px 4px 20px 0px #49c628a6;
   background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);

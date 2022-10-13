@@ -18,14 +18,14 @@ const Rejecter = () => {
                         <h1 className='text-[white] md:text-[60px] text-[26px] font-bold'> Website Name. </h1>
                         <p>You can find here what ever you want, <strong> Quality, Top rate and all type </strong>  </p>
                       </div>
-                      <div className='lg:mt-[60px] mt-[40px]'>
-                          <p className='font-bold md:text-[22px] text-[18px]'> login with social media </p>
-                          <SocialButtons />
-                      </div>
                   </Overlay>
               </LeftContainer>
               <RightContainer>
                   <Outlet />
+                  <div className='lg:mt-[10px] mt-[0px]'>
+                      <p className='md:text-[22px] text-[18px] text-[#333] '> login with social media </p>
+                      <SocialButtons />
+                  </div>
               </RightContainer>
         </Container>
     </div>
@@ -61,7 +61,7 @@ const LeftContainer = styled.div`
   width : 60%;
   @media(max-width : 1050px){
     width : 100%;
-    height : 40%
+    height : 20%
   }
 `
 const Overlay = styled.div`
@@ -95,7 +95,7 @@ const RightContainer = styled.div`
   @media(max-width : 1050px){
     padding: 20px;
     width : 100%;
-    height : 60%;
+    height : 80%;
     gap: 4px;
   }
 `
