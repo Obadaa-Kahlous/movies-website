@@ -35,7 +35,7 @@ const Login = () => {
             name : 'password',
             type : showPassword ? 'text' : 'password',
             placeholder : 'Password',
-            ErrorMessage : 'should be 8-16 characters and include at least 1 letter, 1 number and 1 special character!',
+            ErrorMessage : '1 letter, 1 number and 1 special character!',
             pattern : `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$`,
             icon : 'lock-closed-outline',
             required : false,
@@ -82,7 +82,7 @@ const Login = () => {
 export default Login
 
 const Title = styled.h5`
-  font-size: 90px;
+  font-size: 60px;
   color : #333;
   @media(max-width : 1050px){
     font-size: 40px;
@@ -93,13 +93,13 @@ const Button = styled.button`
   font-size: 16px;
   padding: 12px 35px;
   border-radius: 5px;
-  margin-top : 30px;
+  margin-top : 10px;
   font-size: 18px;
   box-shadow: 0px 4px 20px 0px #49c628a6;
   background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
   @media(max-width : 768px){
     font-size: 14px;
     padding: 7px 35px;
-    margin: 10px 0px;
+    margin: 15px 0px;
   }
 `

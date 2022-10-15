@@ -1,20 +1,43 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
-import InputForm from '../shared/input/input-form';
 
-const SignUp = () => {
+import { useDispatch, useSelector } from 'react-redux'
+
+import InputForm from '../shared/input/input-form';
+import { resetRegister, signUp } from '../../store/registerSlice';
+import Loader from '../loader/loader';
+
+
+const Rejecter = () => {
+
+    const navigate = useNavigate()
+
+    const { isLoading , status } = useSelector((state) => state.register)
+    const dispatch = useDispatch()
+    console.log(isLoading , status);
+
+    useEffect(() => {
+      if (status === 200) {
+        navigate("/feed");
+        dispatch(resetRegister())
+      } 
+    }, [status,dispatch]);
+  
+
     const [values , setValues ] = useState({
         email : '',
-        password : ''
+        password : '',
+        username : '',
       });
       const handleSummit = (e) =>{
         e.preventDefault();
+        dispatch(signUp(values))
       }
+      const [showPassword , setShowPassword] = useState(false)
       const handleChange = (e) =>{
         setValues({...values , [e.target.name]: e.target.value})
       }
-      const [showPassword , setShowPassword] = useState(false)
       const handleShowPassword = () =>{setShowPassword(!showPassword)}
 
       const InputsData = [
@@ -46,7 +69,7 @@ const SignUp = () => {
             name : 'password',
             type : showPassword ? 'text' : 'password',
             placeholder : 'Password',
-            ErrorMessage : 'Password should be 8-16 characters and include at least 1 letter, 1 number and 1 special character!',
+            ErrorMessage : '1 letter, 1 number and 1 special character!',
             pattern : `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$`,
             icon : 'lock-closed-outline',
             required : false,
@@ -54,8 +77,8 @@ const SignUp = () => {
     
     ]
   return (
-    <> 
-        <Title className=''> SignUp </Title>
+    <>
+        <Title className=''> Rejecter </Title>
         <p className='text-[#B0B3B9] text-[14px]'> have an account? 
             <Link to='/'> 
                 <span className='text-[#49C628] ml-[5px] font-bold cursor-pointer md:text-[14px] text-[12px]'> 
@@ -83,17 +106,19 @@ const SignUp = () => {
                 />
                 ))
             }
-            <Button className=''> Rejecter </Button>
+            {
+              isLoading ? <Loader /> : <Button className=''> Rejecter  </Button>
+            }            
         </form>
     </>
   )
 }
 
-export default SignUp
+export default Rejecter
 
 
 const Title = styled.h5`
-  font-size: 90px;
+  font-size: 60px;
   color : #333;
   @media(max-width : 1050px){
     font-size: 40px;
@@ -104,12 +129,13 @@ const Button = styled.button`
   font-size: 16px;
   padding: 12px 35px;
   border-radius: 5px;
+  margin-top : 10px;
   font-size: 18px;
   box-shadow: 0px 4px 20px 0px #49c628a6;
   background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
   @media(max-width : 768px){
     font-size: 14px;
     padding: 7px 35px;
-    margin: 10px 0px;
+    margin: 15px 0px;
   }
 `

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import backgroundImage from '../../assets/rejecter.jpg'
 import SocialButtons from '../../component/social-buttons/social-buttons';
 
-const Rejecter = () => {
+const Register = () => {
 
 
   return (
@@ -32,7 +32,7 @@ const Rejecter = () => {
   )
 }
 
-export default Rejecter
+export default Register
 
 const Container = styled.div`
   width: 80%;
