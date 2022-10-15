@@ -1,47 +1,63 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Loader from '../loader/loader';
 import InputForm from '../shared/input/input-form';
 
+import { useDispatch, useSelector } from 'react-redux'
+import { login, resetRegister } from '../../store/registerSlice';
 const Login = () => {
-    const [values , setValues ] = useState({
-        email : '',
-        password : ''
-      });
-      const handleSummit = (e) =>{
-        e.preventDefault();
-      }
-      const handleChange = (e) =>{
-        setValues({...values , [e.target.name]: e.target.value})
-      }
-      const [showPassword , setShowPassword] = useState(false)
-      const handleShowPassword = () =>{setShowPassword(!showPassword)}
 
-      const InputsData = [
-        {
-            id: 1,
-            label: '',
-            name : 'email',
-            type : 'email',
-            placeholder : 'Email',
-            ErrorMessage : 'It should be a valid email address!',
-            pattern : `[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$`,
-            icon : 'mail-outline',
-            required : false,
-        },
-        {
-            id: 2,
-            label: '',
-            name : 'password',
-            type : showPassword ? 'text' : 'password',
-            placeholder : 'Password',
-            ErrorMessage : '1 letter, 1 number and 1 special character!',
-            pattern : `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$`,
-            icon : 'lock-closed-outline',
-            required : false,
-        },
-    
-    ]
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { isLoading , status } = useSelector((state) => state.register)
+  console.log(isLoading , status);
+
+  useEffect(() => {
+    if (status === 200) {
+      navigate("/feed");
+      dispatch(resetRegister())
+    } 
+  }, [status,dispatch]);
+  const handleSummit = (e) =>{
+    e.preventDefault();
+    dispatch(login(values))
+  }
+  const [values , setValues ] = useState({
+      email : '',
+      password : ''
+    });
+  const handleChange = (e) =>{
+    setValues({...values , [e.target.name]: e.target.value})
+  }
+  const [showPassword , setShowPassword] = useState(false)
+  const handleShowPassword = () =>{setShowPassword(!showPassword)}
+
+  const InputsData = [
+    {
+          id: 1,
+          label: '',
+          name : 'email',
+          type : 'email',
+          placeholder : 'Email',
+          ErrorMessage : 'It should be a valid email address!',
+          pattern : `[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$`,
+          icon : 'mail-outline',
+          required : false,
+      },
+      {
+          id: 2,
+          label: '',
+          name : 'password',
+          type : showPassword ? 'text' : 'password',
+          placeholder : 'Password',
+          ErrorMessage : '1 letter, 1 number and 1 special character!',
+          pattern : `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$`,
+          icon : 'lock-closed-outline',
+          required : false,
+    },
+  ]
   return (
     <> 
         <Title className=''> Login </Title>
@@ -72,7 +88,9 @@ const Login = () => {
                 />
                 ))
             }
-            <Button className=''> Login </Button>
+            {
+              isLoading ? <Loader /> : <Button className=''> Rejecter  </Button>
+            }     
         </form>
     </>
 

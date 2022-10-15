@@ -2,8 +2,8 @@ import React from 'react'
 
 const Loader = () => {
   return (
-    <>
-        <div class="lds-ellipsis">
+    <>  
+        <div className="lds-ellipsis">
             <div></div>
             <div></div>
             <div></div>
@@ -16,6 +16,15 @@ const Loader = () => {
                 position: relative;
                 width:40px;
                 height: 40px;
+                margin-bottom : 25px;
+            }
+            @media(max-width : 768px){
+                .lds-ellipsis {
+                    display: inline-block;
+                    position: relative;
+                    width:25px;
+                    height: 25px;
+                }
             }
             .lds-ellipsis div {
                 position: absolute;

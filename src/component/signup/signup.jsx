@@ -12,9 +12,9 @@ import Loader from '../loader/loader';
 const Rejecter = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const { isLoading , status } = useSelector((state) => state.register)
-    const dispatch = useDispatch()
     console.log(isLoading , status);
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const Rejecter = () => {
                 </span> 
             </Link>        
         </p>
-        <form onSubmit={handleSummit} className='w-full'>
+        <form onSubmit={handleSummit} className='w-full' netlify>
             {
                 InputsData.map((item,key)=>(
                 <InputForm

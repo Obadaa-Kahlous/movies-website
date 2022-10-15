@@ -6,7 +6,7 @@ const initialState = {
     error : false,
     status : null,
 }
-export const signUp = createAsyncThunk('register/signup' , async (values, thunkAPI)=>{
+export const signUp = createAsyncThunk('register/signUp' , async (values, thunkAPI)=>{
     console.log(values);
     const {rejectWithValue} = thunkAPI
     const formData = new FormData()
@@ -27,6 +27,27 @@ export const signUp = createAsyncThunk('register/signup' , async (values, thunkA
     }
 })
 
+export const login = createAsyncThunk('register/login' , async (values, thunkAPI)=>{
+    console.log(values);
+    const {rejectWithValue} = thunkAPI
+    const formData = new FormData()
+    formData.append('email' , values.email)
+    formData.append('password' , values.password)
+    try {   
+        const res = axios.post('http://51.75.52.119/~mymovies/public/api/login' , formData, {
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        console.log(res);
+        return res
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+})
+
+
 const registerSlice = createSlice({
     name :'register',
     initialState:initialState,
@@ -42,6 +63,17 @@ const registerSlice = createSlice({
             state.status = action.payload.status
         },
         [signUp.rejected]:(state , action) =>{
+            state.isLoading = false
+        },
+
+        [login.pending]:(state , action) =>{
+            state.isLoading = true
+        },
+        [login.fulfilled]:(state , action) =>{
+            state.isLoading = false
+            state.status = action.payload.status
+        },
+        [login.rejected]:(state , action) =>{
             state.isLoading = false
         },
     }
