@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 
 import InputForm from '../shared/input/input-form';
-import { resetRegister, signUp } from '../../store/registerSlice';
+import { signUp } from '../../store/registerSlice';
 import Loader from '../loader/loader';
 
 
@@ -14,13 +14,11 @@ const Rejecter = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { isLoading , status } = useSelector((state) => state.register)
-    console.log(isLoading , status);
+    const { isLoading , status , signUpError} = useSelector((state) => state.register)
 
     useEffect(() => {
-      if (status === 200) {
+      if (status === 200 && signUpError === '') {
         navigate("/feed");
-        dispatch(resetRegister())
       } 
     }, [status,dispatch]);
   
@@ -47,8 +45,8 @@ const Rejecter = () => {
             name : 'username',
             type : 'text',
             placeholder : 'username',
-            ErrorMessage : 'User name should be 6-16 characters and Should not incloude any special character',
-            pattern : `^[A-Za-z0-9]{6,16}`,
+            ErrorMessage : 'User name should be 4-16 characters and Should not include any special character',
+            pattern : `^[A-Za-z0-9]{4,16}`,
             icon : 'person-outline',
             required : false,
         },
@@ -86,7 +84,7 @@ const Rejecter = () => {
                 </span> 
             </Link>        
         </p>
-        <form onSubmit={handleSummit} className='w-full' netlify>
+        <form onSubmit={handleSummit} className='w-full'>
             {
                 InputsData.map((item,key)=>(
                 <InputForm
@@ -105,6 +103,9 @@ const Rejecter = () => {
                     onClick={handleShowPassword}
                 />
                 ))
+            }
+            {
+              signUpError && <span className='text-[red] text-[15px] block'> {signUpError} </span>
             }
             {
               isLoading ? <Loader /> : <Button className=''> Rejecter  </Button>

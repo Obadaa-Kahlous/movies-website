@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Navbar from '../../component/navbar/navbar'
+import { moviesType } from '../../store/getDataSlice'
+
+import img from '../../assets/slider-bg.jpg'
+import { Outlet } from 'react-router-dom'
 
 const Feed = () => {
+
+
   return (
-    <div className='w-full h-screen flex justify-center items-center'>
-       <h1 className='text-[#333] md:text-[60px] text-[24px]'> Welcome. </h1>
-    </div>
+    <>
+        <Navbar />
+        <Outlet />
+    </>
   )
 }
 

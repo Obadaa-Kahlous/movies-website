@@ -18,14 +18,6 @@ const Loader = () => {
                 height: 40px;
                 margin-bottom : 25px;
             }
-            @media(max-width : 768px){
-                .lds-ellipsis {
-                    display: inline-block;
-                    position: relative;
-                    width:25px;
-                    height: 25px;
-                }
-            }
             .lds-ellipsis div {
                 position: absolute;
                 top: 33px;
@@ -34,6 +26,23 @@ const Loader = () => {
                 border-radius: 50%;
                 background: #49c628a6;
                 animation-timing-function: cubic-bezier(0, 1, 1, 0);
+            }
+            @media(max-width : 768px){
+                .lds-ellipsis {
+                    display: inline-block;
+                    position: relative;
+                    width:25px;
+                    height: 25px;
+                }
+                .lds-ellipsis div {
+                    position: absolute;
+                    top: 33px;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #49c628a6;
+                    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+                }
             }
             .lds-ellipsis div:nth-child(1) {
                 left: 8px;

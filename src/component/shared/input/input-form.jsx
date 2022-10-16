@@ -9,7 +9,7 @@ const InputForm = ({onClick , isPassword , labelText , name , id , value , type 
         <div className='relative'>
           <input type={type} name={name} id={id} pattern={pattern} 
           value={value} onChange={onChange} placeholder={placeholder} required={required}
-          className='w-full border-b-[1px] border-[#49C628] py-[8px] pl-[40px] pr-[10px]'
+          className='w-full border-b-[2px] border-[#49C628] py-[8px] pl-[40px] pr-[10px] ' 
           />
           <Icon className='left-[10px]'>
             <ion-icon name={icon}></ion-icon>
@@ -32,6 +32,7 @@ const InputForm = ({onClick , isPassword , labelText , name , id , value , type 
                 color : red;
                 font-size: 13px;
                 display: none;
+                {/* bg-[#E8F0FE] */}
             }
             @media(max-width : 768px){
               span.error{
@@ -39,7 +40,7 @@ const InputForm = ({onClick , isPassword , labelText , name , id , value , type 
               } 
             }
             input:invalid  {
-                border-bottom: 1px solid red;
+                border-bottom: 2px solid red;
             }
             input:invalid ~ span {
                 display: block;
@@ -60,5 +61,6 @@ const Icon = styled.span`
   transform: translateY(-50%);
   color : #737377;
   font-size: 20px;
+  cursor: pointer;
 `
 
