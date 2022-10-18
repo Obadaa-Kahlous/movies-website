@@ -2,12 +2,10 @@ import React from 'react'
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components'
 
-
 import backgroundImage from '../../assets/rejecter.jpg'
 import SocialButtons from '../../component/social-buttons/social-buttons';
 
 const Register = () => {
-
 
   return (
     <div className='flex justify-center items-center h-screen'>

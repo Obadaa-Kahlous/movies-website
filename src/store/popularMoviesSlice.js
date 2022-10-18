@@ -3,36 +3,34 @@ import axios from 'axios'
 
 const initialState = {
     isLoading : false,
-    moviesTypeData : [],
 }
 
-
-export const moviesType = createAsyncThunk('getData/moviesType' , async(_ , thunkAPI) => {
+const popularMovies = createAsyncThunk('popular/popularMovies' , async (value , thunkAPI)=>{
     const {rejectWithValue} = thunkAPI
     try {
-        const res = await axios.get('http://51.75.52.119/~mymovies/public/api/genres')
+        const res = await axios.post(`http://51.75.52.119/~mymovies/public/api/movies?type=${value}`)
+        console.log(res);
         return res
     } catch (error) {
         return rejectWithValue(error)
     }
 })
 
-const getDataSlice = createSlice({
-    name : 'getData',
+const popularMoviesSlice = createSlice({
+    name : 'popular',
     initialState,
     extraReducers:{
-        [moviesType.pending]: (state , action)=>{
+        [popularMovies.pending]: (state , action)=>{
             state.isLoading = true
         },
-        [moviesType.fulfilled]: (state , action)=>{
+        [popularMovies.fulfilled]: (state , action)=>{
             state.isLoading = false
             state.moviesTypeData = action.payload.data.data
         },
-        [moviesType.rejected]: (state ,action)=>{
+        [popularMovies.rejected]: (state ,action)=>{
             state.isLoading = false
         }
-
     }
 })
 
-export default getDataSlice.reducer 
+export default popularMoviesSlice.reducer 

@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import styled from 'styled-components'
-
 import { useDispatch, useSelector } from 'react-redux'
-
 import InputForm from '../shared/input/input-form';
 import { signUp } from '../../store/registerSlice';
 import Loader from '../loader/loader';
-
-
+import { Button , Title } from '../style/style';
 const Rejecter = () => {
-
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const { isLoading , status , signUpError} = useSelector((state) => state.register)
-
     useEffect(() => {
       if (status === 200 && signUpError === '') {
         navigate("/feed");
       } 
     }, [status,dispatch]);
-  
-
     const [values , setValues ] = useState({
         email : '',
         password : '',
@@ -114,29 +105,4 @@ const Rejecter = () => {
     </>
   )
 }
-
 export default Rejecter
-
-
-const Title = styled.h5`
-  font-size: 60px;
-  color : #333;
-  @media(max-width : 1050px){
-    font-size: 40px;
-  }
-`
-const Button = styled.button`
-  color: #fff;
-  font-size: 16px;
-  padding: 12px 35px;
-  border-radius: 5px;
-  margin-top : 10px;
-  font-size: 18px;
-  box-shadow: 0px 4px 20px 0px #49c628a6;
-  background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
-  @media(max-width : 768px){
-    font-size: 14px;
-    padding: 7px 35px;
-    margin: 15px 0px;
-  }
-`

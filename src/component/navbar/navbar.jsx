@@ -3,23 +3,43 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Navbar = () => {
+    const navbarData = [
+        {
+            to: '/feed',
+            icon: 'tv-outline',
+            title: 'Movies',
+        },
+        {
+            to: 'Genres',
+            icon: 'color-palette-outline',
+            title: 'Genres'
+        },
+        {
+            to: 'topmovies',
+            icon: 'earth-outline',
+            title: 'Top Movies',
+        },
+        {
+            to: '/popular',
+            icon: 'bar-chart-outline',
+            title: 'popular',
+        }
+    ]
 
     const user = JSON.parse(localStorage.getItem('userData'))
     return (
         <Nav>
             <Ul>
-                <LinkElem to=''>
-                    <Li>
-                        <span className='flex items-center justify-center'> <ion-icon name="tv-outline"></ion-icon> </span>
-                        <span> Movies </span>
-                    </Li>
-                </LinkElem>
-                <LinkElem to='genres'>
-                    <Li>
-                        <span className='flex items-center justify-center'> <ion-icon name="color-palette-outline"></ion-icon> </span>
-                        <span> Genres </span>
-                    </Li>
-                </LinkElem>
+                {
+                    navbarData.map((item, key) => (
+                        <LinkElem to={item.to} key={key}>
+                            <Li>
+                                <span className='flex items-center justify-center'> <ion-icon name={item.icon}></ion-icon> </span>
+                                <span> {item.title} </span>
+                            </Li>
+                        </LinkElem>
+                    ))
+                }
             </Ul>
             <Wrapper className=''>
                 <p> {user.name} </p>
@@ -47,29 +67,14 @@ const Nav = styled.nav`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    a.active{
-        /* color: #0A66C2;
-        background-color: rgb(226 232 240); */
-        /* &:after{
-            position: absolute;
-            content: '';
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2%;
-            background-color: #0A66C2;
-            transition: 0.4s;
-            z-index: 1;
-        } */
-    }
+    box-shadow: 0 5px 25px 0 rgb(0 0 0 / 30%)
 `
 const Ul = styled.nav`
     display: flex;
+    gap: 10px;
 `
 export const LinkElem = styled(NavLink)`
     position: relative;
-    height: 80px;
-    min-width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,9 +83,28 @@ const Li = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    min-width : 140px;
+    gap: 5px;
+    height: 80px;
     color: #fff;
     font-size: 18px;
+    transition: 0.3s;
+    &:after{
+        position: absolute;
+        content : '';
+        bottom : 0px;
+        left : 0px;
+        width : 0;
+        height : 2px;
+        background : #49c628;
+        transition: 0.3s;
+    }
+    &:hover:after{
+        width : 100%;
+    }
+    &:hover{
+        color : #49c628;
+    }
 `
 const Wrapper = styled.div` 
     display: flex;
