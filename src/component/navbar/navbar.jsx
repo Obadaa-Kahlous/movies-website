@@ -10,17 +10,17 @@ const Navbar = () => {
             title: 'Movies',
         },
         {
-            to: 'Genres',
+            to: 'o',
             icon: 'color-palette-outline',
             title: 'Genres'
         },
         {
-            to: 'topmovies',
+            to: 'o',
             icon: 'earth-outline',
             title: 'Top Movies',
         },
         {
-            to: '/popular',
+            to: 'popular',
             icon: 'bar-chart-outline',
             title: 'popular',
         }
@@ -42,12 +42,14 @@ const Navbar = () => {
                 }
             </Ul>
             <Wrapper className=''>
-                <p> {user.name} </p>
-                <img src={user.image} alt="" />
+                <Info className=''>
+                    <p> {user.name} </p>
+                    <img src={user.image} alt="" />
+                </Info>
                 <NavLink to=''>
-                    <li>
+                    <Heart>
                         <span className='flex items-center justify-center text-[30px] text-[red]'> <ion-icon name="heart"></ion-icon> </span>
-                    </li>
+                    </Heart>
                 </NavLink>
             </Wrapper>
         </Nav>
@@ -67,27 +69,50 @@ const Nav = styled.nav`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 5px 25px 0 rgb(0 0 0 / 30%)
+    box-shadow: 0 5px 25px 0 rgb(0 0 0 / 30%);
+    @media(max-width : 1024px){
+        position: fixed;
+        top: 0;
+        height: 0;
+        width : 300px;
+        height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+    }
+    a.active{
+        color : #49c628;
+    }
 `
 const Ul = styled.nav`
     display: flex;
     gap: 10px;
+    @media(max-width : 1024px){
+        display: block;
+        width: 100%;
+    }
 `
 export const LinkElem = styled(NavLink)`
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
+    @media(max-width : 1024px){
+        justify-content: flex-start;
+    }
+
 `
 const Li = styled.li`
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     min-width : 140px;
     gap: 5px;
     height: 80px;
-    color: #fff;
-    font-size: 18px;
+    font-size: 15px;
     transition: 0.3s;
     &:after{
         position: absolute;
@@ -105,18 +130,58 @@ const Li = styled.li`
     &:hover{
         color : #49c628;
     }
+    @media(max-width : 1024px){
+        width : 100%;
+        display: flex;
+        height: auto;
+        align-items: center;
+        padding: 30px 10px;
+        justify-content: flex-start;
+        &:hover:after{
+            width : 60%;
+        }
+    }
 `
-const Wrapper = styled.div` 
+const Wrapper = styled.div`
+    position: relative;
     display: flex;
     align-items: center;
     gap: 16px;
     p{
         color: #fff;
         font-size: 20px;
+        cursor: pointer;
     }
     img{
         width: 60px;
         height: 60px;
         border-radius: 50%;
+        cursor: pointer;
+    }
+    @media(max-width : 1024px){
+        width: 100%;
+        display: block;
+        padding: 10px;
+        padding-bottom: 30px;
+        border-bottom: 3px solid #49c628;
     }
 `
+const Info = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    @media(max-width : 1024px){
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column-reverse;
+    }
+`
+const Heart = styled.div`
+    @media(max-width : 1024px){
+        position: absolute;
+        top: 20px;
+        right: 10px;
+    }
+`
+
+

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import register from './registerSlice'
-import getDataSlice from './getDataSlice'
-import popularMovies from './popularMoviesSlice'
+import register from '../feature/registerSlice'
+import getDataSlice from '../feature/getDataSlice'
+import popularMovies from '../feature/popularMoviesSlice'
 export default configureStore({
     reducer: {
         register,

@@ -3,12 +3,13 @@ import axios from 'axios'
 
 const initialState = {
     isLoading : false,
+    popularMoviesData : [],
 }
 
-const popularMovies = createAsyncThunk('popular/popularMovies' , async (value , thunkAPI)=>{
+export const popularMovies = createAsyncThunk('popular/popularMovies' , async (_ , thunkAPI)=>{
     const {rejectWithValue} = thunkAPI
     try {
-        const res = await axios.post(`http://51.75.52.119/~mymovies/public/api/movies?type=${value}`)
+        const res = await axios.post(`http://51.75.52.119/~mymovies/public/api/movies?type=popular`)
         console.log(res);
         return res
     } catch (error) {
@@ -25,7 +26,7 @@ const popularMoviesSlice = createSlice({
         },
         [popularMovies.fulfilled]: (state , action)=>{
             state.isLoading = false
-            state.moviesTypeData = action.payload.data.data
+            state.popularMoviesData = action.payload.data.data.movies.data
         },
         [popularMovies.rejected]: (state ,action)=>{
             state.isLoading = false

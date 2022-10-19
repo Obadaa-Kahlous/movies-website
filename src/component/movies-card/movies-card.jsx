@@ -41,7 +41,7 @@ const Container = styled.div`
     overflow: hidden;
     transition: 0.3s;
     &:hover{
-      box-shadow: 0px 4px 40px 0px rgba(73, 198, 40, 0.4)  ;
+      /* box-shadow: 0px 4px 40px 0px rgba(73, 198, 40, 0.4)  ; */
       transform: scale(1.05);
     }
     &:hover ${Favorite}{
@@ -49,6 +49,10 @@ const Container = styled.div`
     }
     @media(max-width : 992px){
       width : 220px;
+    }
+    @media(max-width : 768px){
+      width : 95%;
+      margin : 0 auto;
     }
     @media(max-width : 480px){
       width : 300px;

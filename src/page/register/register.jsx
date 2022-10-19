@@ -8,25 +8,34 @@ import SocialButtons from '../../component/social-buttons/social-buttons';
 const Register = () => {
 
   return (
-    <div className='flex justify-center items-center h-screen'>
-        <Container>
-              <LeftContainer>
-                  <Overlay>
-                      <div>
-                        <h1 className='text-[white] md:text-[60px] text-[26px] font-bold'> Website Name. </h1>
-                        <p>You can find here what ever you want, <strong> Quality, Top rate and all type </strong>  </p>
-                      </div>
-                  </Overlay>
-              </LeftContainer>
-              <RightContainer>
-                  <Outlet />
-                  <div className='lg:mt-[10px] mt-[0px]'>
-                      <p className='md:text-[22px] text-[18px] text-[#333] '> login with social media </p>
-                      <SocialButtons />
-                  </div>
-              </RightContainer>
-        </Container>
-    </div>
+    <>
+      <div className='flex justify-center items-center h-screen'>
+          <Container>
+                <LeftContainer>
+                    <Overlay>
+                        <div>
+                          <h1 className='text-[white] md:text-[60px] text-[26px] font-bold'> Website Name. </h1>
+                          <p>You can find here what ever you want, <strong> Quality, Top rate and all type </strong>  </p>
+                        </div>
+                    </Overlay>
+                </LeftContainer>
+                <RightContainer>
+                    <Outlet />
+                    <div className='lg:mt-[10px] mt-[0px]'>
+                        <p className='md:text-[22px] text-[18px] text-[#333] '> login with social media </p>
+                        <SocialButtons />
+                    </div>
+                </RightContainer>
+          </Container>
+      </div>
+      <style>
+        {`
+          body{
+            background-color : #fff;
+          }
+        `}
+      </style>
+    </>
   )
 }
 

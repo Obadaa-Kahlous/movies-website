@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { moviesType } from '../../store/getDataSlice'
+import { moviesType } from '../../feature/getDataSlice'
 
 const Genres = () => {
 
@@ -17,11 +17,6 @@ const Genres = () => {
     const scrollRight = () => {
         scrollRef.current.scrollLeft -= 200;
     }
-    useEffect(()=>{
-        setInterval(() => {
-            scrollRef.current.scrollLeft += 200
-        }, 6000);
-    },[scrollRef])
 
     return (
         <>
@@ -36,10 +31,14 @@ const Genres = () => {
                     ))
                 }
             </Wrapper>
-            <ArrowsButton>
-                <button onClick={scrollRight}> <ion-icon name="arrow-back-outline"></ion-icon> </button>
-                <button onClick={scrollLeft}> <ion-icon name="arrow-forward-outline"></ion-icon> </button>
-            </ArrowsButton>
+            {   
+                moviesTypeData.length > 0 ? 
+                <ArrowsButton>
+                    <button onClick={scrollRight}> <ion-icon name="arrow-back-outline"></ion-icon> </button>
+                    <button onClick={scrollLeft}> <ion-icon name="arrow-forward-outline"></ion-icon> </button>
+                </ArrowsButton>
+                : null
+            }
         </>
     )
 }

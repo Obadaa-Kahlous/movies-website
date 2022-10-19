@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch} from 'react-redux'
 import Navbar from '../../component/navbar/navbar'
-import { moviesType } from '../../store/getDataSlice'
 
-import img from '../../assets/slider-bg.jpg'
-import { Outlet } from 'react-router-dom'
-import popularMoviesSlice from '../../store/popularMoviesSlice'
+import { Outlet, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 const Feed = () => {
   const [value , setValue] = useState('popula')
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const hh = () => {
-    dispatch(popularMoviesSlice(value))
+    localStorage.clear()
+    navigate('/')
   }
 
   return (
     <>
         <Navbar />
-        <Outlet />
+        <div>
+          <Outlet />  
+        </div>
+        <div className='fixed lg:top-[-60px] bottom-0 lg:right-0 w-[120px] h-[120px] rounded-full bg-main-color'></div>
         <button onClick={hh}> Obada </button>
-        <style>
-          {`
-            body{
-              height : 1800px
-            }
-          `}
-        </style>
     </>
   )
 }
 
 export default Feed
+
