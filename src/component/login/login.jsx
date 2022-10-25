@@ -4,7 +4,7 @@ import Loader from '../loader/loader';
 import InputForm from '../shared/input/input-form';
 
 import { useDispatch, useSelector } from 'react-redux'
-import { login, resetRegister } from '../../feature/registerSlice';
+import { login, resetRegister } from '../../feature/register-slice';
 import { Title, Button } from '../style/style';
 const Login = () => {
 
@@ -14,10 +14,10 @@ const Login = () => {
   const { isLoading, status, loginError, token } = useSelector((state) => state.register)
   useEffect(() => {
     if (status === 200 && loginError === '') {
-      navigate("/feed");
+      navigate("/main-page");
       dispatch(resetRegister())
     }
-  }, [status,loginError]);
+  }, [status, loginError]);
 
   const handleSummit = (e) => {
     e.preventDefault();

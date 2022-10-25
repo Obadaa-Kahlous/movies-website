@@ -4,10 +4,13 @@ import Genres from "./component/genres/genres";
 import Login from "./component/login/login";
 import Movies from "./component/movies/movies";
 import SignUp from "./component/signup/signup";
-import Feed from "./page/feed/feed";
 
 import Register from "./page/register/register";
-import Test from "./page/test/test";
+import PopularMovies from "./page/popular/popular";
+import Layout from "./page/layout/layout";
+import FavoriteMovies from "./page/favorite-movies/favorite-movies";
+import PageNotFound from "./page/page-not-found/page-not-found";
+import Info from "./page/Info/Info";
 
 
 
@@ -23,10 +26,14 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
             </Route>
-            <Route path="/feed" element={<Feed /> }>
-              <Route path="/feed" element={<Movies />} />
-              <Route path='popular' element={<Test />} />
+            <Route path="/main-page" element={<Layout /> }>
+              <Route path="/main-page" element={<Movies />} />
+              <Route path='popular' element={<PopularMovies />} />
+              <Route path='favorite-movies' element={<FavoriteMovies />} />
             </Route>
+
+            <Route path=":id" element={<Info />} />
+            <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
 

@@ -10,6 +10,7 @@ const initialState = {
     token : null,
     userData : null,
 }
+
 export const signUp = createAsyncThunk('register/signUp' , async (values, thunkAPI)=>{
     const {rejectWithValue} = thunkAPI
     const formData = new FormData()
@@ -41,7 +42,6 @@ export const login = createAsyncThunk('register/login' , async (values, thunkAPI
                 "Content-Type": "application/json",
             },
         })
-        console.log(res);
         return res
     } catch (error) {
         return rejectWithValue(error)

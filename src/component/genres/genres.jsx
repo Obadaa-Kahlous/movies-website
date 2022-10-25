@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { moviesType } from '../../feature/getDataSlice'
+import { moviesType } from '../../feature/genres-slice'
 
 const Genres = () => {
 
     const dispatch = useDispatch()
-    const { moviesTypeData , isLoading } = useSelector((state) => state.getDataSlice)
+    const { moviesTypeData, isLoading } = useSelector((state) => state.getDataSlice)
     useEffect(() => {
         dispatch(moviesType())
     }, [,])
@@ -31,13 +31,13 @@ const Genres = () => {
                     ))
                 }
             </Wrapper>
-            {   
-                moviesTypeData.length > 0 ? 
-                <ArrowsButton>
-                    <button onClick={scrollRight}> <ion-icon name="arrow-back-outline"></ion-icon> </button>
-                    <button onClick={scrollLeft}> <ion-icon name="arrow-forward-outline"></ion-icon> </button>
-                </ArrowsButton>
-                : null
+            {
+                moviesTypeData.length > 0 ?
+                    <ArrowsButton>
+                        <button onClick={scrollRight}> <ion-icon name="arrow-back-outline"></ion-icon> </button>
+                        <button onClick={scrollLeft}> <ion-icon name="arrow-forward-outline"></ion-icon> </button>
+                    </ArrowsButton>
+                    : null
             }
         </>
     )

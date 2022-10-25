@@ -2,10 +2,10 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Navbar = () => {
+const Navbar = ({nav}) => {
     const navbarData = [
         {
-            to: '/feed',
+            to: '/main-page',
             icon: 'tv-outline',
             title: 'Movies',
         },
@@ -28,7 +28,7 @@ const Navbar = () => {
 
     const user = JSON.parse(localStorage.getItem('userData'))
     return (
-        <Nav>
+        <Nav active={nav}>
             <Ul>
                 {
                     navbarData.map((item, key) => (
@@ -44,9 +44,9 @@ const Navbar = () => {
             <Wrapper className=''>
                 <Info className=''>
                     <p> {user.name} </p>
-                    <img src={user.image} alt="" />
+                    <img src={user.image} alt="profileImage" />
                 </Info>
-                <NavLink to=''>
+                <NavLink to='favorite-movies'>
                     <Heart>
                         <span className='flex items-center justify-center text-[30px] text-[red]'> <ion-icon name="heart"></ion-icon> </span>
                     </Heart>
@@ -70,16 +70,19 @@ const Nav = styled.nav`
     justify-content: space-around;
     align-items: center;
     box-shadow: 0 5px 25px 0 rgb(0 0 0 / 30%);
+    transition: 0.3s ease-in-out;
     @media(max-width : 1024px){
         position: fixed;
         top: 0;
+        left : ${ (props) => props.active ? '0%' : '-100%' };
         height: 0;
-        width : 300px;
+        width : 250px;
         height: 100vh;
         display: flex;
         align-items: flex-start;
         flex-direction: column-reverse;
         justify-content: flex-end;
+        transition: 0.3s ease-in-out;
     }
     a.active{
         color : #49c628;

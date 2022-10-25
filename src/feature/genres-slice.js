@@ -7,6 +7,7 @@ const initialState = {
 }
 
 
+
 export const moviesType = createAsyncThunk('getData/moviesType' , async(_ , thunkAPI) => {
     const {rejectWithValue} = thunkAPI
     try {
@@ -16,6 +17,9 @@ export const moviesType = createAsyncThunk('getData/moviesType' , async(_ , thun
         return rejectWithValue(error)
     }
 })
+
+
+
 
 const getDataSlice = createSlice({
     name : 'getData',

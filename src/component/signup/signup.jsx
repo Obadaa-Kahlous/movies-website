@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import InputForm from '../shared/input/input-form';
-import { resetRegister, signUp } from '../../feature/registerSlice';
+import { resetRegister, signUp } from '../../feature/register-slice';
 import Loader from '../loader/loader';
 import { Button, Title } from '../style/style';
 const Rejecter = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { isLoading, status, signUpError , token } = useSelector((state) => state.register)
+  const { isLoading, status, signUpError, token } = useSelector((state) => state.register)
   useEffect(() => {
     if (status === 200 && signUpError === '') {
-      navigate("/feed");
+      navigate("/main-page");
       dispatch(resetRegister())
     }
-  }, [status,signUpError]);
+  }, [status, signUpError]);
   const [values, setValues] = useState({
     email: '',
     password: '',

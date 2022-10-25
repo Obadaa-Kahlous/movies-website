@@ -22,3 +22,22 @@ export const Button = styled.button`
     margin: 20px 0px;
   }
 `
+
+export const Container = styled.div`
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @media(min-width: 650px){
+    width: 540px;
+  }
+  @media(min-width: 768px){
+    width : 768px;
+  }
+  @media(min-width : 992px){
+    width : 960px;
+  }
+  @media(min-width : 1200px){
+    width : 1140px;
+  }
+` 

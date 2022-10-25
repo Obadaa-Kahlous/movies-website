@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const FavoriteButton = ({onClick}) => {
   return (
-    <Button onClick={onClick}> <ion-icon name="heart"></ion-icon></Button>
+    <Button onClick={onClick}><ion-icon name="heart-outline"></ion-icon></Button>
   )
 }
 
